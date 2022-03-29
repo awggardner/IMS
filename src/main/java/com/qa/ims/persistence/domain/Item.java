@@ -8,13 +8,13 @@ public class Item {
 	private String description;
 
 	public Item(String name, String description) {
-		this.setname(name);
+		this.setName(name);
 		this.setdescription(description);
 	}
 
 	public Item(Long id, String name, String description) {
 		this.setId(id);
-		this.setname(name);
+		this.setName(name);
 		this.setdescription(description);
 	}
 
@@ -26,11 +26,11 @@ public class Item {
 		this.id = id;
 	}
 
-	public String getname() {
+	public String getName() {
 		return name;
 	}
 
-	public void setname(String name) {
+	public void setName(String name) {
 		this.name = name;
 	}
 
@@ -44,7 +44,7 @@ public class Item {
 
 	@Override
 	public String toString() {
-		return "id:" + id + " first name:" + name + " description:" + description;
+		return "id:" + id + " name:" + name + " description:" + description;
 	}
 
 	@Override
@@ -66,10 +66,10 @@ public class Item {
 		if (getClass() != obj.getClass())
 			return false;
 		Item other = (Item) obj;
-		if (getname() == null) {
-			if (other.getname() != null)
+		if (getName() == null) {
+			if (other.getName() != null)
 				return false;
-		} else if (!getname().equals(other.getname()))
+		} else if (!getName().equals(other.getName()))
 			return false;
 		if (id == null) {
 			if (other.id != null)
