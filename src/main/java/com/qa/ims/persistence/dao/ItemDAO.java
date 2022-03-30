@@ -18,9 +18,9 @@ public class ItemDAO implements Dao<Item> {
 
 	@Override
 	public Item modelFromResultSet(ResultSet resultSet) throws SQLException {
-		Long itemId = resultSet.getLong("itemId");
-		String itemName = resultSet.getString("itemName");
-		String itemDescription = resultSet.getString("itemDescription");
+		Long itemId = resultSet.getLong("item_id");
+		String itemName = resultSet.getString("item_name");
+		String itemDescription = resultSet.getString("item_description");
 		return new Item(itemId, itemName, itemDescription);
 	}
 
@@ -49,7 +49,7 @@ public class ItemDAO implements Dao<Item> {
 	public Item readLatest() {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				Statement statement = connection.createStatement();
-				ResultSet resultSet = statement.executeQuery("SELECT * FROM items ORDER BY id DESC LIMIT 1");) {
+				ResultSet resultSet = statement.executeQuery("SELECT * FROM items ORDER BY item_id DESC LIMIT 1");) {
 			resultSet.next();
 			return modelFromResultSet(resultSet);
 		} catch (Exception e) {
@@ -65,12 +65,12 @@ public class ItemDAO implements Dao<Item> {
 	 * @param Item - takes in a Item object. id will be ignored
 	 */
 	@Override
-	public Item create(Item Item) {
+	public Item create(Item item) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				PreparedStatement statement = connection
 						.prepareStatement("INSERT INTO items(item_name, item_description) VALUES (?, ?)");) {
-			statement.setString(1, Item.getItemName());
-			statement.setString(2, Item.getItemDescription());
+			statement.setString(1, item.getItemName());
+			statement.setString(2, item.getItemDescription());
 			statement.executeUpdate();
 			return readLatest();
 		} catch (Exception e) {
@@ -104,15 +104,15 @@ public class ItemDAO implements Dao<Item> {
 	 * @return
 	 */
 	@Override
-	public Item update(Item Item) {
+	public Item update(Item item) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				PreparedStatement statement = connection
 						.prepareStatement("UPDATE items SET item_name = ?, item_description = ? WHERE item_id = ?");) {
-			statement.setString(1, Item.getItemName());
-			statement.setString(2, Item.getItemDescription());
-			statement.setLong(3, Item.getItemId());
+			statement.setString(1, item.getItemName());
+			statement.setString(2, item.getItemDescription());
+			statement.setLong(3, item.getItemId());
 			statement.executeUpdate();
-			return read(Item.getItemId());
+			return read(item.getItemId());
 		} catch (Exception e) {
 			LOGGER.debug(e);
 			LOGGER.error(e.getMessage());
