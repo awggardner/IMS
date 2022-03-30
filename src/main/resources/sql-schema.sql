@@ -10,3 +10,10 @@ CREATE TABLE IF NOT EXISTS `ims`.`customers` (
     `surname` VARCHAR(40) DEFAULT NULL,
     PRIMARY KEY (`id`)
 );
+
+CREATE TABLE IF NOT EXISTS `ims`.`items` (
+    `item_id` INT(11) NOT NULL AUTO_INCREMENT,
+    `name` VARCHAR(40) DEFAULT NULL,
+    `description` VARCHAR(200) DEFAULT NULL,
+    PRIMARY KEY (`item_id`)
+);
