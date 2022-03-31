@@ -20,14 +20,13 @@ public class OrderDAO implements Dao<Order> {
 
 	@Override
 	public Order modelFromResultSet(ResultSet resultSet) throws SQLException {
-		Long id = resultSet.getLong("id");
-		String firstName = resultSet.getString("first_name");
-		String surname = resultSet.getString("surname");
-		return new Order(id, firstName, surname);
+		Long orderId = resultSet.getLong("order_id");
+		Long id = resultSet.getLong("id");		
+		return new Order(orderId, id);
 	}
 
 	/**
-	 * Reads all orders from the database
+	 * Reads all Orders from the database
 	 * 
 	 * @return A list of orders
 	 */
@@ -62,9 +61,9 @@ public class OrderDAO implements Dao<Order> {
 	}
 
 	/**
-	 * Creates a order in the database
+	 * Creates an order in the database
 	 * 
-	 * @param order - takes in a order object. id will be ignored
+	 * @param order - takes in an order object. id will be ignored
 	 */
 	@Override
 	public Order create(Order order) {
@@ -128,10 +127,10 @@ public class OrderDAO implements Dao<Order> {
 	 * @param id - id of the order
 	 */
 	@Override
-	public int delete(long id) {
+	public int delete(long order_id) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
-				PreparedStatement statement = connection.prepareStatement("DELETE FROM orders WHERE id = ?");) {
-			statement.setLong(1, id);
+				PreparedStatement statement = connection.prepareStatement("DELETE FROM orders WHERE order_id = ?");) {
+			statement.setLong(1, order_id);
 			return statement.executeUpdate();
 		} catch (Exception e) {
 			LOGGER.debug(e);

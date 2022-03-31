@@ -7,10 +7,10 @@ public class Order extends Customer {
 	private Long orderId;
 	
 
-	public Order(Long id, String firstName, String surname) {
-		super(id, firstName, surname);
+	public Order(Long orderId, Long id) {
+		super(id, firstName, firstName);
+		this.orderId = orderId;
 		
-		// TODO Auto-generated constructor stub
 	}
 	
 
@@ -26,7 +26,7 @@ public class Order extends Customer {
 
 	@Override
 	public String toString() {
-		return "id:" + orderId + " first name:" + Customer.firstName + "last name " + Customer.surname;
+		return "Order id: " + orderId + " first name:" + Customer.firstName + "last name " + Customer.surname;
 	}
 
 	@Override
