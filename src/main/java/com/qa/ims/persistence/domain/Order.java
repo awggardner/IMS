@@ -1,32 +1,45 @@
 package com.qa.ims.persistence.domain;
 
-public class Order extends Customer {
+import java.util.ArrayList;
+import java.util.List;
+
+public class Order  {
 
 
 
 	private Long orderId;
+	private Customer customer;
 	
+	// create an arraylist to store items in an order
+	private List<Item> orderitems = new ArrayList<Item>();
 
-	public Order(Long orderId, Long id) {
-		super(id, firstName, firstName);
-		this.orderId = orderId;
-		
+	// add item to orderitems list
+	public void addOrderItem(Item item) {
+		this.orderitems.add(item);
 	}
 	
-
-	public Long getOrderId() {
-		return orderId;
+	// remove item from orderitems
+	public void removeOrderItem(Item item) {
+		this.orderitems.remove(item);
 	}
-
-	public void setOrderId(Long orderId) {
-		this.orderId = orderId;
-	}
+	
+	
+	
+// taking these out for now but will need them for deleting orders?	
+//	public Long getOrderId() {
+//		return orderId;
+//	}
+//
+//	public void setOrderId(Long orderId) {
+//		this.orderId = orderId;
+//	}
 
 	
-
+	// returns order ID, customer name, orderitems
 	@Override
 	public String toString() {
-		return "Order id: " + orderId + " first name:" + Customer.firstName + "last name " + Customer.surname;
+		return "Order id: " + orderId + " first name:" + this.customer.getFirstName() + 
+				"last name " + this.customer.getSurname() + orderitems;
 	}
 
 	@Override
