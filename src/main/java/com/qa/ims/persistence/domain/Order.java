@@ -68,6 +68,21 @@ public class Order  {
 		return true;
 	}
 
+	public String getFirstName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public String getSurname() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public long getId() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }
 
 

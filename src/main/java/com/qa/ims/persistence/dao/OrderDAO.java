@@ -20,9 +20,7 @@ public class OrderDAO implements Dao<Order> {
 
 	@Override
 	public Order modelFromResultSet(ResultSet resultSet) throws SQLException {
-		Long orderId = resultSet.getLong("order_id");
-		Long id = resultSet.getLong("id");		
-		return new Order(orderId, id);
+		return new Order();
 	}
 
 	/**
@@ -69,7 +67,8 @@ public class OrderDAO implements Dao<Order> {
 	public Order create(Order order) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				PreparedStatement statement = connection
-						.prepareStatement("INSERT INTO orders(first_name, surname) VALUES (?, ?)");) {
+						// Do I need customer name here? probably not
+						.prepareStatement("INSERT INTO orders(customer_id, first_name, surname) VALUES (?, ?, ?)");) {
 			statement.setString(1, order.getFirstName());
 			statement.setString(2, order.getSurname());
 			statement.executeUpdate();
