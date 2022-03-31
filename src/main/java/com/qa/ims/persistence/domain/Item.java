@@ -3,7 +3,7 @@ package com.qa.ims.persistence.domain;
 
 public class Item {
 
-	private Long itemId;
+	protected Long itemId;
 	private String itemName;
 	private String itemDescription;
 

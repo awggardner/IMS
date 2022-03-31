@@ -5,6 +5,9 @@ import org.junit.Test;
 import nl.jqno.equalsverifier.EqualsVerifier;
 
 public class CustomerTest {
+	
+	@Test
+	
 
 	@Test
 	public void testEquals() {
