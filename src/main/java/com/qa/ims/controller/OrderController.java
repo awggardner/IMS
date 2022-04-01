@@ -1,11 +1,13 @@
 package com.qa.ims.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.qa.ims.persistence.dao.OrderDAO;
+import com.qa.ims.persistence.domain.Item;
 import com.qa.ims.persistence.domain.Order;
 import com.qa.ims.utils.Utils;
 
@@ -43,7 +45,17 @@ public class OrderController implements CrudController<Order> {
 	 */
 	@Override
 	public Order create() {
-		return null;
+		Order order = new Order();
+		List<Item>orderitems = new ArrayList<Item>();
+		LOGGER.info("Please enter Customer ID");
+		order.setCustomer(utils.getLong());
+		LOGGER.info("Please enter the Item ID of the item you would like to add to your order");
+		Long itemId = utils.getLong();
+		
+		order.addOrderItem(null);
+		
+		
+		
 
 	}
 
