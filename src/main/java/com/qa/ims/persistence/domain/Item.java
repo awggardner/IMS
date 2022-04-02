@@ -6,17 +6,20 @@ public class Item {
 	protected Long itemId;
 	private String itemName;
 	private String itemDescription;
+	private double itemPrice;
 
-	public Item(String itemName, String itemDescription) {
+	public Item(String itemName, String itemDescription, double itemPrice) {
 		this.setItemName(itemName);
 		this.setItemDescription(itemDescription);
 	}
 
-	public Item(Long itemId, String itemName, String itemDescription) {
+	public Item(Long itemId, String itemName, String itemDescription, double itemPrice) {
 		this.setItemId(itemId);
 		this.setItemName(itemName);
 		this.setItemDescription(itemDescription);
 	}
+	
+	
 
 	public Long getItemId() {
 		return itemId;
@@ -40,6 +43,15 @@ public class Item {
 
 	public void setItemDescription(String itemDescription) {
 		this.itemDescription = itemDescription;
+	}
+	
+
+	public double getItemPrice() {
+		return itemPrice;
+	}
+
+	public void setItemPrice(double itemPrice) {
+		this.itemPrice = itemPrice;
 	}
 
 	@Override
@@ -85,5 +97,3 @@ public class Item {
 	}
 
 }
-
-

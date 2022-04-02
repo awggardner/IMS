@@ -3,8 +3,8 @@ package com.qa.ims.persistence.domain;
 public class Customer {
 
 	private Long id;
-	protected static String firstName;
-	protected static String surname;
+	private String firstName;
+	private String surname;
 
 	public Customer(String firstName, String surname) {
 		this.setFirstName(firstName);
@@ -30,7 +30,7 @@ public class Customer {
 	}
 
 	public void setFirstName(String firstName) {
-		Customer.firstName = firstName;
+		this.firstName = firstName;
 	}
 
 	public String getSurname() {
@@ -38,12 +38,12 @@ public class Customer {
 	}
 
 	public void setSurname(String surname) {
-		Customer.surname = surname;
+		this.surname = surname;
 	}
 
 	@Override
 	public String toString() {
-		return "id:" + id + " first name:" + firstName + " surname:" + surname;
+		return "id:" + id + "|" + " first name: " + firstName + "|" + " surname: " + surname + "|" ;
 	}
 
 	@Override

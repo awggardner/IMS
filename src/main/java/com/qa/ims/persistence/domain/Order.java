@@ -9,9 +9,27 @@ public class Order  {
 
 	private Long orderId;
 	private Customer customer;
+	private Item item;
 	
 	// create an arraylist to store items in an order
 	private List<Item> orderitems = new ArrayList<Item>();
+
+	public Order(Long orderId, Item item) {
+		this.orderId = orderId;
+		this.setItem(item);
+	}
+
+	public Order() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public Order(Customer newCustomer) {
+		// TODO Auto-generated constructor stub
+	}
+
+	public Order(Long orderId2) {
+		// TODO Auto-generated constructor stub
+	}
 
 	// add item to orderitems list
 	public void addOrderItem(Item item) {
@@ -24,17 +42,34 @@ public class Order  {
 	}
 	
 	
-	
-// taking these out for now but will need them for deleting orders?	
-//	public Long getOrderId() {
-//		return orderId;
-//	}
-//
-//	public void setOrderId(Long orderId) {
-//		this.orderId = orderId;
-//	}
 
 	
+	public Long getOrderId() {
+		return orderId;
+	}
+	
+	
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
+	public List<Item> getOrderitems() {
+		return orderitems;
+	}
+
+	public void setOrderitems(List<Item> orderitems) {
+		this.orderitems = orderitems;
+	}
+
+	public void setOrderId(Long orderId) {
+		this.orderId = orderId;
+	}
+
 	// returns order ID, customer name, orderitems
 	@Override
 	public String toString() {
@@ -81,6 +116,19 @@ public class Order  {
 	public long getId() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	public long getItemId() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public Item getItem() {
+		return item;
+	}
+
+	public void setItem(Item item) {
+		this.item = item;
 	}
 
 }

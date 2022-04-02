@@ -29,10 +29,24 @@ CREATE TABLE IF NOT EXISTS orders (
 CREATE TABLE IF NOT EXISTS order_items (
 	order_id INT (11) NOT NULL,
     item_id INT (11) NOT NULL,
-    quantity INT(5) DEFAULT(1),
+    
     PRIMARY KEY(order_id, item_id),
     FOREIGN KEY(order_id) REFERENCES orders (order_id),
     FOREIGN KEY(item_id) REFERENCES items (item_id)
     );
     
 show tables;
+
+SELECT * FROM items;
+SELECT * FROM orders;
+SELECT * FROM customers;
+
+INSERT INTO orders 
+
+SELECT o.order_id AS order_id, c.id AS customer_id, c.first_name, c.surname,
+i.Item_id AS item_id, i.item_name, i.item_price
+FROM orders o 
+JOIN customers c ON o.customer_id = c.id 
+JOIN order_items oi ON o.order_id = oi.order_id
+JOIN items i ON oi.item_id = i.item_id
+ORDER BY order_id;
