@@ -14,9 +14,14 @@ public class Order  {
 	// create an arraylist to store items in an order
 	private List<Item> orderitems = new ArrayList<Item>();
 
-	public Order(Long orderId, Item item) {
+	public Order(Long orderId, long itemId) {
 		this.orderId = orderId;
-		this.setItem(item);
+		this.setItem(itemId);
+	}
+
+	private void setItem(long itemId) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	public Order() {
@@ -27,7 +32,8 @@ public class Order  {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Order(Long orderId2) {
+
+	public Order(Long orderId, Item item) {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -130,6 +136,9 @@ public class Order  {
 	public void setItem(Item item) {
 		this.item = item;
 	}
+
+
+
 
 }
 
