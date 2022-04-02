@@ -1,12 +1,14 @@
 package com.qa.ims.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.qa.ims.persistence.dao.CustomerDAO;
+import com.qa.ims.persistence.dao.ItemDAO;
 import com.qa.ims.persistence.dao.OrderDAO;
+import com.qa.ims.persistence.domain.Customer;
 import com.qa.ims.persistence.domain.Item;
 import com.qa.ims.persistence.domain.Order;
 import com.qa.ims.utils.Utils;
@@ -21,6 +23,7 @@ public class OrderController implements CrudController<Order> {
 
 	private OrderDAO orderDAO;
 	private Utils utils;
+
 
 	public OrderController(OrderDAO orderDAO, Utils utils) {
 		super();
@@ -45,18 +48,13 @@ public class OrderController implements CrudController<Order> {
 	 */
 	@Override
 	public Order create() {
-		Order order = new Order();
-		List<Item>orderitems = new ArrayList<Item>();
-		LOGGER.info("Please enter Customer ID");
-		order.setCustomer(utils.getLong());
-		LOGGER.info("Please enter the Item ID of the item you would like to add to your order");
-		Long itemId = utils.getLong();
-		
-		order.addOrderItem(null);
-		
-		
-		
-
+		LOGGER.info("Please enter your customer id to create an order, "
+				+ "to add an item to your order please update your order once it has been created");
+		Long customerId = utils.getLong();
+		CustomerDAO customerDAO = new CustomerDAO();
+        Customer customer = customerDAO.read(customerId);
+        Order order = orderDAO.create(new Order(customer));
+        return order;
 	}
 
 	/**
@@ -64,9 +62,17 @@ public class OrderController implements CrudController<Order> {
 	 */
 	@Override
 	public Order update() {
-		return null;
+        LOGGER.info("Please enter the id of the order you would like to update.");
+        Long orderId = utils.getLong();
+        LOGGER.info("Please enter the ID of the item you would like to add");
+        Long itemId = utils.getLong();
+        ItemDAO itemDAO = new ItemDAO();
+        Item item = itemDAO.read(itemId);
+        Order order = orderDAO.update(new Order(orderId, item));    
 
-	}
+        LOGGER.info("Order updated");
+        return order;
+    }
 
 	/**
 	 * Deletes an existing order by the id of the order
@@ -76,8 +82,8 @@ public class OrderController implements CrudController<Order> {
 	@Override
 	public int delete() {
 		LOGGER.info("Please enter the id of the order you would like to delete");
-		Long id = utils.getLong();
-		return orderDAO.delete(id);
+		Long itemId = utils.getLong();
+		return orderDAO.delete(itemId);
 	}
 
 }
